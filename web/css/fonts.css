@@ -1,0 +1,74 @@
+/*@font-face {
+  font-family: 'Scada';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Scada'), local('Scada-Regular'), url(fonts/scada-regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Scada';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Scada Bold'), local('Scada-Bold'), url(fonts/scada-bold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Scada';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Scada Italic'), local('Scada-Italic'), url(fonts/scada-italic.woff) format('woff');
+}
+@font-face {
+  font-family: 'Scada';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Scada Bold Italic'), local('Scada-BoldItalic'), url(fonts/scada-bolditalic.woff) format('woff');
+}*/
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('fonts/FontAwesome.eot?v=4.3.0');
+    src: url('fonts/FontAwesome.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('fonts/FontAwesome.woff?v=4.3.0') format('woff'),
+    url('fonts/FontAwesome.ttf?v=4.3.0') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansBold';
+    src: url('fonts/OpenSansBold.eot?v=4.3.0');
+    src: url('fonts/OpenSansBold.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('fonts/OpenSansBold.woff?v=4.3.0') format('woff'),
+    url('fonts/OpenSansBold.ttf?v=4.3.0') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('fonts/OpenSansRegular.eot?v=4.3.0');
+    src: url('fonts/OpenSansRegular.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('fonts/OpenSansRegular.woff?v=4.3.0') format('woff'),
+    url('fonts/OpenSansRegular.ttf?v=4.3.0') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansLightRegular';
+    src: url('fonts/OpenSansLightRegular.eot?v=4.3.0');
+    src: url('fonts/OpenSansLightRegular.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('fonts/OpenSansLightRegular.woff?v=4.3.0') format('woff'),
+    url('fonts/OpenSansLightRegular.ttf?v=4.3.0') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansSemiBold';
+    src: url('fonts/OpenSansSemiBold.eot?v=4.3.0');
+    src: url('fonts/OpenSansSemiBold.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('fonts/OpenSansSemiBold.woff?v=4.3.0') format('woff'),
+    url('fonts/OpenSansSemiBold.ttf?v=4.3.0') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
