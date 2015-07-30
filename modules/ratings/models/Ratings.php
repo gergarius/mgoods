@@ -156,3 +156,5 @@ class Ratings extends \yii\db\ActiveRecord {
 	}
 
 }
+
+
