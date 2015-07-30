@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use yii\helpers\ArrayHelper;
 
@@ -95,8 +95,13 @@ $config = [
                 '<controller:\w+>'                                                               => '<controller>/index',
                 '<controller:\w+>/<id:\d+>'                                                      => '<controller>/index',
 				'<controller:\w+>/<id:\d+>/<currency:\w+>'                                       => '<controller>/index',
+<<<<<<< HEAD
 				'<controller:\w+>/<action:\w+>/'                                                 => '<controller>/<action>',
+				'<controller:\w+>/<action:\w+>/<id:\d+>'                                         => '<controller>/<action>',
+=======
+                '<controller:\w+>/<action:\w+>'                                                  => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'                                         => '<controller>/<action>',
+>>>>>>> b17373b93cc224a7c42570d57a7ccd70f4ca8392
 				/*
 					'contact'                                                                        => 'main/contact/index',
 					'<_a:error>'                                                                     => 'main/default/<_a>',
