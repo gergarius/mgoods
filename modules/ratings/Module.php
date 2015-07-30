@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\rating;
+namespace app\modules\ratings;
 
 class Module extends \yii\base\Module
 {

@@ -135,8 +135,14 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 				'items' => [
 					[
 						'label'   => 'Предложения от магазинов (' . $data->object->count_proposals . ')',
-						'content' => $this->render('_proposals', [
-							'data' => $data,
+						'content' => $this->render('_ratings', [
+							//'content' => $this->render('_proposals', [
+							//'data' => $data,
+							'rating'      => $rating,
+							'pages'       => $pages,
+							'model' => $ratingModel,
+							'fieldName' => $fieldName,
+							//'fieldValue' => $fieldValue,
 						]),
 						'active'  => true
 					],
@@ -148,7 +154,7 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 					],
 					[
 						'label'   => 'Отзывы о товаре (3)',
-						'content' => $this->render('_recalls', [
+						'content' => $this->render('_proposals', [
 							'data' => $data,
 						]),
 					],
@@ -192,7 +198,6 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 	<script type="application/javascript">
 		$(document).ready(function () {
 			$('#scrollpane1').sbscroller();
-			//$('#scrollpane1').removeClass('display_none')
 			$('.scroll-content-item').on({
 				'click': function () {
 					//active
@@ -200,7 +205,6 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 					var img_src = $('img', this).attr('src');
 
 					$('.scroll-slider-wrapper img').fadeOut("fast", function () {
-						console.log(img_src);
 						$('.scroll-slider-wrapper img').attr('src', img_src);
 						$('.scroll-slider-wrapper img').fadeIn("fast");
 					});

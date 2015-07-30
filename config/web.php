@@ -14,13 +14,13 @@ $config = [
 	'language'   => 'ru',
 	'language'   => 'ru-RU',
 	'modules'    => [
-		'admin' => [
+		'admin'   => [
 			'class' => 'app\modules\admin\Module',
 		],
-		/*'main' => [
-			'class' => 'app\modules\main\Module',
-		],*/
-		'user'  => [
+		'ratings' => [
+			'class' => 'app\modules\rating\Module',
+		],
+		'user'    => [
 			'class' => 'app\modules\user\Module',
 		],
 	],
@@ -91,6 +91,7 @@ $config = [
 			'rules'           => [
 				'<controller:\w+>/<id:\d+>'                                                      => '<controller>/index',
 				'<controller:\w+>/<id:\d+>/<currency:\w+>'                                       => '<controller>/index',
+				'<controller:\w+>/<action:\w+>/'                                                 => '<controller>/<action>',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'                                         => '<controller>/<action>',
 				/*
 					'contact'                                                                        => 'main/contact/index',

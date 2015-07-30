@@ -4,9 +4,11 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\BadRequestHttpException;
+use yii\data\Pagination;
 
 use app\components\Currency;
 use app\components\ObjectData;
+use app\modules\ratings\models\Ratings;
 
 class ObjectController extends Controller {
 	public function behaviors() {
@@ -18,9 +20,10 @@ class ObjectController extends Controller {
 			'error' => [
 				'class' => 'yii\web\ErrorAction',
 			],
-			/*'captcha' => [
-				'class' => 'yii\captcha\CaptchaAction', 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-			],*/
+			'captcha' => [
+				'class' => 'yii\captcha\CaptchaAction',
+				'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+			],
 		];
 	}
 
@@ -44,40 +47,32 @@ class ObjectController extends Controller {
 			'content' => $data->object->metakeywords
 		]);
 
+		$ratingModel = new Ratings;
 
-		return $this->render('index', [
-			'data' => $data,
-			'id'   => $id,
-		]);
-	}
-
-	public function actionObject_ratings() {
-		$model = new ObjectRatings();
-
-		if ($model->load(Yii::$app->request->post())) {
-			if ($model->validate()) {
-				// form inputs are valid, do something here
-				return;
+		if ($ratingModel->load(Yii::$app->request->post())) {
+			if ($ratingModel->validate()) {
+				shodie($ratingModel);
+				$ratingModel->save();
 			}
 		}
 
-		return $this->render('object_ratings', [
-			'model' => $model,
+		shodie($ratingModel);
+
+		$ratingModel->object_id = $id;
+		$fieldName = 'object_id';
+
+		$query = Ratings::getActiveRating('object_id', $id);
+		$pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 10]);
+		$rating = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+		return $this->render('index', [
+			'data'        => $data,
+			'rating'      => $rating,
+			'pages'       => $pages,
+			'id'          => $id,
+			'ratingModel' => $ratingModel,
+			'fieldName' => $fieldName,
 		]);
 	}
-
-
-	/*public function actionContact() {
-		$model = new ContactForm();
-		if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-			Yii::$app->session->setFlash('contactFormSubmitted');
-
-			return $this->refresh();
-		} else {
-			return $this->render('contact', [
-				'model' => $model,
-			]);
-		}
-	}*/
 
 }

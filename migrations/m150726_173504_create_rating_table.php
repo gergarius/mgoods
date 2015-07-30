@@ -36,7 +36,7 @@ class m150726_173504_create_rating_table extends Migration {
 
 	public function down() {
 		echo "m150724_212831_create_user_table dropTable user.\n";
-		$this->dropTable('{{%user}}');
+		$this->dropTable('{{%ratings}}');
 	}
 
 

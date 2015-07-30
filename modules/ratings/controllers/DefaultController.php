@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\rating\controllers;
+namespace app\modules\ratings\controllers;
 
 use yii\web\Controller;
 
