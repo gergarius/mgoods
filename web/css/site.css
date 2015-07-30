@@ -969,3 +969,67 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.headershop .img {
+    border: 1px solid #e1e7ec;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    float: left;
+    margin-right: 30px;
+}
+
+.headershop .info {
+    float: left;
+    width: 530px;
+}
+
+.headershop .buttons {
+    float: left;
+}
+
+.headershop .buttons a {
+    display: block;
+    width: 252px;
+    height: 32px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #3ac07c;
+    text-align: center;
+    padding-top: 6px;
+    font-family: OpenSansregular;
+    margin-bottom: 10px;
+}
+
+.headershop .buttons a.call {
+    background-color: #31a36f;
+}
+.info a {
+    color : #434343;
+    text-decoration: underline;
+    font-family: OpenSans-Regular;
+    font-size: 18px;
+}
+
+.shopleft {
+    float:left;
+    width: 310px;
+    margin-top: 40px;
+}
+
+.shopright {
+    float: left;
+    margin-top: 40px;
+    width: 610px;
+}
+
+.shopright > p {
+    font-family: OpenSans-Bold;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.shopitem {
+    border-bottom: 1px solid #e1e7ec;
+    height: 130px;
+}

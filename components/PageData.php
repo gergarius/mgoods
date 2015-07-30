@@ -62,15 +62,15 @@ class PageData extends Data {
 	}
 
 	//Получения ссылки данных
-	public static function getDataUrl($id) {
-
-		$currency = Currency::getCurrent();
-		$currency = strtolower($currency);
-
-		self::setCurrentDomain();
-
-		return 'http://' . self::$dataDomain . "/json_object/$id/currency/$currency/ip/" . self::getIpAddress();
-	}
+//	public static function getDataUrl($id) {
+//
+//		$currency = Currency::getCurrent();
+//		$currency = strtolower($currency);
+//
+//		self::setCurrentDomain();
+//
+//		return 'http://' . self::$dataDomain . "/json_object/$id/currency/$currency/ip/" . self::getIpAddress();
+//	}
 
 	//Проверяем полученные данные
 	public static function isJson($string) {

@@ -8,7 +8,7 @@ $config = [
 	'id'         => 'base',
 	'name'       => 'MarketGid Goods',
 	'basePath'   => dirname(__DIR__),
-	'bootstrap'  => ['log'],
+	'bootstrap'  => ['log', 'gii'],
 	//'defaultRoute'   => 'object/index',
 	//'sourceLanguage' => 'en',
 	'language'   => 'ru',
@@ -23,6 +23,9 @@ $config = [
 		'user'  => [
 			'class' => 'app\modules\user\Module',
 		],
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ],
 	],
 	'components' => [
 		'request'        => [// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -89,9 +92,11 @@ $config = [
 			'showScriptName'  => false,
 			'class'           => 'app\components\LangUrlManager',
 			'rules'           => [
-				'<controller:\w+>/<id:\d+>'                                                      => '<controller>/index',
+                '<controller:\w+>'                                                               => '<controller>/index',
+                '<controller:\w+>/<id:\d+>'                                                      => '<controller>/index',
 				'<controller:\w+>/<id:\d+>/<currency:\w+>'                                       => '<controller>/index',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'                                         => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'                                                  => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'                                         => '<controller>/<action>',
 				/*
 					'contact'                                                                        => 'main/contact/index',
 					'<_a:error>'                                                                     => 'main/default/<_a>',
