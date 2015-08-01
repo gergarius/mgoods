@@ -3,12 +3,16 @@
 namespace app\controllers;
 
 use app\components\ShopData;
+use app\components\ShopForm;
 use Yii;
 
 class ShopController extends \yii\web\Controller
 {
     public function actionIndex()
     {
+
+        $model = new ShopForm();
+
         $shopName = "pingvinpc.ru";
        // $brand = ["[1]"=>"canon", "[2]"=>"asus"];
         $brand = [];
@@ -28,9 +32,9 @@ class ShopController extends \yii\web\Controller
             'content' => $data->shop->metakeywords
         ]);
 
+        $model->load(Yii::$app->request->get());
 
-
-        return $this->render('index', ['data'=>$data]);
+        return $this->render('index', ['data'=>$data, 'model'=>$model]);
 
     }
 
