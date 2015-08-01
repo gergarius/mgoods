@@ -35,5 +35,14 @@ class ShopForm extends Model{
         return [0=>"Все", 1=>"Есть на складе", 2=>"Предзаказ", 4=>"Снят с продаж"];
     }
 
+    public function getBrandsList($data){
+        $arr = [];
+        foreach($data as $v){
+            $arr[$v] = $v;
+        }
+
+        return $arr;
+    }
+
 
 }
