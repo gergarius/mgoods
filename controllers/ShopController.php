@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\ShopData;
 use app\components\ShopForm;
 use Yii;
+use yii\data\Pagination;
 
 class ShopController extends \yii\web\Controller
 {
@@ -13,7 +14,7 @@ class ShopController extends \yii\web\Controller
 
         $model = new ShopForm();
 
-        $shopName = "pingvinpc.ru";
+        $shopName = "rozetka.com.ua";
        // $brand = ["[1]"=>"canon", "[2]"=>"asus"];
         $brand = [];
         $data = ShopData::getDataShop($shopName, $brand);
@@ -34,7 +35,10 @@ class ShopController extends \yii\web\Controller
 
         $model->load(Yii::$app->request->get());
 
-        return $this->render('index', ['data'=>$data, 'model'=>$model]);
+        // pagination
+        $pages = new Pagination(['totalCount' => $data->global->goods_count]);
+
+        return $this->render('index', ['data'=>$data, 'model'=>$model, 'pages'=>$pages]);
 
     }
 
