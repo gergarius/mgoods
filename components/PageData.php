@@ -20,9 +20,6 @@ class PageData extends Data {
 		return self::$dataDomain;
 	}
 
-	public static function getData($id) {
-		return parent::getJson(self::getDataUrl($id));
-	}
 
 	//Установка текущего домена данных
 	public static function setCurrentDomain() {
@@ -62,15 +59,15 @@ class PageData extends Data {
 	}
 
 	//Получения ссылки данных
-//	public static function getDataUrl($id) {
-//
-//		$currency = Currency::getCurrent();
-//		$currency = strtolower($currency);
-//
-//		self::setCurrentDomain();
-//
-//		return 'http://' . self::$dataDomain . "/json_object/$id/currency/$currency/ip/" . self::getIpAddress();
-//	}
+	//	public static function getDataUrl($id) {
+	//
+	//		$currency = Currency::getCurrent();
+	//		$currency = strtolower($currency);
+	//
+	//		self::setCurrentDomain();
+	//
+	//		return 'http://' . self::$dataDomain . "/json_object/$id/currency/$currency/ip/" . self::getIpAddress();
+	//	}
 
 	//Проверяем полученные данные
 	public static function isJson($string) {

@@ -17,10 +17,10 @@
     "yiisoft/yii2": ">=2.0.4",
     "yiisoft/yii2-bootstrap": "*",
     "yiisoft/yii2-swiftmailer": "*",
-    "bower-asset/html5shiv": "*",
-    "bower-asset/respond": "*",
     "kartik-v/yii2-widget-datepicker": "*",
-    "kartik-v/yii2-field-range": "*"
+    "kartik-v/yii2-field-range": "*",
+	"himiklab/yii2-recaptcha-widget" : "*",
+    "mdmsoft/yii2-captcha": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

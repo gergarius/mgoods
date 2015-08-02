@@ -6,6 +6,7 @@ use yii\bootstrap\Tabs;
 use app\widgets\SocialLikes;
 use app\components\ObjectData;
 use app\components\Currency;
+use app\modules\ratings\models\Ratings;
 
 //use yii\bootstrap\ActiveForm;
 //use app\widgets\RatingWidget;
@@ -71,14 +72,50 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 				</div>
 			</div>
 		</div>
+
 		<div class="fr obj-desc">
 			<div class="obj-border">
 				<div class="obj-desc-top">
 					<div class="obj-star-raiting">
-						<?php /*echo RatingWidget::widget([
-									'object_id' => $id,
-								]);*/
+						<?php
+
+						$sumMiddle = 0;
+						$bad_active = 'active';
+						$not_nice_active = $normal_active = $nice_active = $awesome_active = '';
+
+						foreach ($ratingColumn as $rait) {
+							$sumMiddle += $rait['rating'];
+						}
+						$sumMiddle = round($sumMiddle / count($ratingColumn));
+
+						if ($sumMiddle >= Ratings::NOT_NICE_RAIT) {
+							$not_nice_active = 'active';
+						}
+						if ($sumMiddle >= Ratings::NORMAL_RAIT) {
+							$normal_active = 'active';
+						}
+						if ($sumMiddle >= Ratings::NICE_RAIT) {
+							$nice_active = 'active';
+						}
+						if ($sumMiddle >= Ratings::AWESOME_RAIT) {
+							$awesome_active = 'active';
+						}
 						?>
+						<div class="rating-widget-stars">
+							<div name="rating" class="rating-star-wrap">
+								<div name="1" class="sprite bad <?= $bad_active ?>" title="ужасно">&nbsp;</div>
+								<div name="2" class="sprite not-nice <?= $not_nice_active ?>" title="плохо">&nbsp;</div>
+								<div name="3" class="sprite normal <?= $normal_active ?>" title="средне">&nbsp;</div>
+								<div name="4" class="sprite nice <?= $nice_active ?>" title="хорошо">&nbsp;</div>
+								<div name="5" class="sprite awesome <?= $awesome_active ?>" title="отлично">&nbsp;</div>
+							</div>
+							<div class="rating-star-value recall">
+								<?= Html::a($sumMiddle . ' отзыва', '#w2-tab2'); ?>
+							</div>
+						</div>
+						<div class="rating-write">
+							<?= Html::a('Оценить данный товар', '#w2-tab2#ratings-form'); ?>
+						</div>
 					</div>
 					<div class="obj-social">
 						<div class="obj-social-text fl">
@@ -89,6 +126,7 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 						</div>
 					</div>
 				</div>
+
 				<div class="obj-desc-bottom">
 					<div class="fl obj-price-mid-text">
 						Средня цена
@@ -120,29 +158,24 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 							<?= "(" . ObjectData::formatPrice($data->object->price_min) . " - " . ObjectData::formatPrice($data->object->price_max) . ")"; ?>
 						</div>
 					</div>
-					<div class="clearfix"></div>
+					<div class="clearfix"></d                    iv>
 
-					<div class="but-style but-text-style proposals-but">
-						<?= Html::a('Смотреть все предложения магазинов (' . $data->object->count_proposals . ')', '#'); ?>
+						<div class="but-style but-text-style proposals-but">
+							<?= Html::a('Смотреть все предложения магазинов (' . $data->object->count_proposals . ')', '#'); ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
+
 		<div class="obj-tabs">
-			<?php
-			echo Tabs::widget([
+			<?= Tabs::widget([
 				'items' => [
 					[
 						'label'   => 'Предложения от магазинов (' . $data->object->count_proposals . ')',
-						'content' => $this->render('_ratings', [
-							//'content' => $this->render('_proposals', [
-							//'data' => $data,
-							'rating'      => $rating,
-							'pages'       => $pages,
-							'model' => $ratingModel,
-							'fieldName' => $fieldName,
-							//'fieldValue' => $fieldValue,
+						'content' => $this->render('_proposals', [
+							'data' => $data,
 						]),
 						'active'  => true
 					],
@@ -153,13 +186,18 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 						]),
 					],
 					[
-						'label'   => 'Отзывы о товаре (3)',
-						'content' => $this->render('_proposals', [
-							'data' => $data,
+						'label'   => 'Отзывы о товаре (' . count($ratingColumn) . ')',
+						'content' => $this->render('_ratings', [
+							'rating'       => $rating,
+							'pages'        => $pages,
+							'model'        => $ratingModel,
+							'ratingColumn' => $ratingColumn,
+							'fieldName'    => $fieldName,
 						]),
 					],
 				]
 			]);
+
 			?>
 		</div>
 
@@ -187,8 +225,7 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 				],
 			]
 		]);*/ ?>
-				</div>
-			</div>
+
 		</div>
 -->
 
@@ -199,7 +236,9 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 		$(document).ready(function () {
 			$('#scrollpane1').sbscroller();
 			$('.scroll-content-item').on({
-				'click': function () {
+
+
+					[]rt5f	'click': function () {
 					//active
 					$('.scroll-content div').removeClass('active');
 					var img_src = $('img', this).attr('src');
@@ -214,7 +253,6 @@ $this->registerCssFile('/css/jquery.sbscroller.css');
 		});
 	</script>
 <?php
-/*use kartik\social\Disqus;
 
-echo Disqus::widget(['settings' => ['shortname' => 'DISQUS_SHORTNAME']]);
-*/
+ssh://git@star-vm.dt00.net:22/gitosis-admin.git
+mkdir mgoods.git && cd mgoods.git/

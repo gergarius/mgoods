@@ -3,6 +3,9 @@
 namespace app\modules\ratings\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use \yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "ratings".
@@ -22,7 +25,7 @@ use Yii;
  * @property string  $comment
  * @property integer $status
  */
-class Ratings extends \yii\db\ActiveRecord {
+class Ratings extends ActiveRecord {
 
 	const STATUS_BLOCKED = 0;
 	const STATUS_ACTIVE = 1;
@@ -37,7 +40,7 @@ class Ratings extends \yii\db\ActiveRecord {
 	/**
 	 * @var string
 	 */
-	public $verifyCode;
+	public $captcha;
 
 	/**
 	 * @inheritdoc
@@ -52,17 +55,37 @@ class Ratings extends \yii\db\ActiveRecord {
 	public function rules() {
 		return [
 			//[['name', 'email', 'subject', 'body'], 'required'],
-			[['created_at', 'updated_at', 'name', 'email', 'comment'], 'required'],
+			[['name', 'email', 'comment'], 'required'],
 			[['created_at', 'updated_at', 'updated_by_user_id', 'object_id', 'shop_id', 'good_id', 'rating', 'status'], 'integer'],
 			[['comment'], 'string'],
 			[['name', 'email'], 'trim'],
 			[['name', 'email'], 'string', 'max' => 255],
 			['email', 'email'],
 			[['pluses', 'minuses'], 'string', 'max' => 256],
-			['verifyCode', 'required'],
-			['verifyCode', 'captcha', 'captchaAction' => '/object/captcha',],
+			['captcha', 'captcha', 'captchaAction' => 'site/captcha', 'caseSensitive' => false,],
 			[['object_id', 'shop_id', 'good_id'], 'validateRatingRelation'],
 			['updated_by_user_id', 'validateUserId'],
+			['status', 'integer'],
+			['status', 'default', 'value' => self::STATUS_BLOCKED],
+			['status', 'in', 'range' => array_keys(self::getStatusesArray())],
+			['rating', 'in', 'range' => [1, 2, 3, 4, 5]],
+		];
+	}
+
+	public function behaviors() {
+		return [
+			'RatingBehavior' => [
+				'class'     => 'app\modules\ratings\common\RatingBehavior',
+				'attribute' => 'updated_by_user_id',
+			],
+			'timestamp'      => [
+				'class'      => 'yii\behaviors\TimestampBehavior',
+				'attributes' => [
+					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+					ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+				],
+				'value'      => new Expression('NOW()'),
+			],
 		];
 	}
 
@@ -131,28 +154,10 @@ class Ratings extends \yii\db\ActiveRecord {
 		return self::find()->where([$type => $id, 'status' => self::STATUS_ACTIVE])->orderBy('created_at DESC');
 	}
 
-	public function beforeValidate($event) {
-		if (parent::beforeValidate($event)) {
-			/*
-			On save
-			<?= $form->field($model, 'created_at')->textInput() ?>
-		    <?= $form->field($model, 'updated_at')->textInput() ?>
-		    <?= $form->field($model, 'updated_by_user_id')->textInput() ?>
-			*/
-
-			if ($this->isNewRecord) {
-				$this->created_at = date('Y-m-d H:s:m', time());
-			}
-			if (Yii::$app->user->id) {
-				$this->updated_by_user_id = id;
-			}
-			$this->updated_at = date('Y-m-d H:s:m', time());
-
-			// ...custom code here...
-			return true;
-		} else {
-			return false;
-		}
+	//Получения ссылки данных
+	public static function getActiveRatingColumn($type, $id) {
+		//avalible $type values object_id, shop_id, good_id
+		return self::find()->select(['rating'])->where([$type => $id, 'status' => self::STATUS_ACTIVE])->asArray()->all();
 	}
 
 }

@@ -7,8 +7,6 @@ use app\components\Lang;
 class LangUrlManager extends UrlManager {
 
 	public function createUrl($params) {
-
-		//shodie($params);
 		if (isset($params['lang'])) {
 			//Если указан идентификатор языка, то делаем попытку найти язык в БД,
 			//иначе работаем с языком по умолчанию

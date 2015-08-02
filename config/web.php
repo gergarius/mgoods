@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use yii\helpers\ArrayHelper;
 
@@ -23,9 +23,9 @@ $config = [
 		'user'    => [
 			'class' => 'app\modules\user\Module',
 		],
-        'gii' => [
-            'class' => 'yii\gii\Module',
-        ],
+		'gii'     => [
+			'class' => 'yii\gii\Module',
+		],
 	],
 	'components' => [
 		'request'        => [// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -92,17 +92,11 @@ $config = [
 			'showScriptName'  => false,
 			'class'           => 'app\components\LangUrlManager',
 			'rules'           => [
-                '<controller:\w+>'                                                               => '<controller>/index',
-                '<controller:\w+>/<id:\d+>'                                                      => '<controller>/index',
-				'<controller:\w+>/<id:\d+>/<currency:\w+>'                                       => '<controller>/index',
+				'<controller:\w+>'                                                               => '<controller>/index',
+				'<controller:\w+>/<id>'                                                          => '<controller>/index',
+				'<controller:\w+>/<id>/<currency:\w+>'                                           => '<controller>/index',
 				'<controller:\w+>/<action:\w+>/'                                                 => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>/<id:\d+>'                                         => '<controller>/<action>',
-				/*
-					'contact'                                                                        => 'main/contact/index',
-					'<_a:error>'                                                                     => 'main/default/<_a>',
-					''                                                                               => 'main/default/index',
-					'<_a:error>'                                                                     => 'main/default/<_a>',*/
-
+				'<controller:\w+>/<action:\w+>/<id>'                                             => '<controller>/<action>',
 				'<_a:(login|logout|signup|confirm-email|request-password-reset|reset-password)>' => 'user/default/<_a>',
 				'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>'                                             => '<_m>/<_c>/view',
 				'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>'                                => '<_m>/<_c>/<_a>',
@@ -117,9 +111,9 @@ $config = [
 		'mailer'         => [
 			'class' => 'yii\swiftmailer\Mailer',
 		],
-		'cache'          => [
+		/*'cache'          => [
 			'class' => 'yii\caching\DummyCache',
-		],
+		],*/
 		'log'            => [
 			'class' => 'yii\log\Dispatcher',
 		],

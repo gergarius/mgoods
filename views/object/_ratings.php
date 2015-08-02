@@ -11,33 +11,34 @@ use yii\widgets\LinkPager;
 <div class="clearfix"></div>
 <div class="h130"></div>
 <?php
-$sumMidle = 0;
+$sumMiddle = 0;
 $sumGrouped[Ratings::BAD_RAIT] = 0;
 $sumGrouped[Ratings::NOT_NICE_RAIT] = 0;
 $sumGrouped[Ratings::NORMAL_RAIT] = 0;
 $sumGrouped[Ratings::NICE_RAIT] = 0;
 $sumGrouped[Ratings::AWESOME_RAIT] = 0;
 
-foreach ($rating as $rait) {
-	$sumMidle += $rait->rating;
-	$sumGrouped[$rait->rating]++;
+$ratingCount = count($ratingColumn);
+
+foreach ($ratingColumn as $rait) {
+	$sumMiddle += $rait['rating'];
+	$sumGrouped[$rait['rating']]++;
 }
-$sumMidle = round($sumMidle / count($rating));
-ksort($sumGrouped);
+$sumMiddle = round($sumMiddle / $ratingCount);
 
 $bad_active = 'active';
 $not_nice_active = $normal_active = $nice_active = $awesome_active = '';
 
-if ($sumMidle >= Ratings::NOT_NICE_RAIT) {
+if ($sumMiddle >= Ratings::NOT_NICE_RAIT) {
 	$not_nice_active = 'active';
 }
-if ($sumMidle >= Ratings::NORMAL_RAIT) {
+if ($sumMiddle >= Ratings::NORMAL_RAIT) {
 	$normal_active = 'active';
 }
-if ($sumMidle >= Ratings::NICE_RAIT) {
+if ($sumMiddle >= Ratings::NICE_RAIT) {
 	$nice_active = 'active';
 }
-if ($sumMidle >= Ratings::AWESOME_RAIT) {
+if ($sumMiddle >= Ratings::AWESOME_RAIT) {
 	$awesome_active = 'active';
 }
 ?>
@@ -57,11 +58,11 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 					<div name="5" class="sprite awesome <?= $awesome_active ?>" title="отлично">&nbsp;</div>
 				</div>
 				<div class="rating-star-value">
-					<?= $sumMidle ?> из 5 звезд
+					<?= $sumMiddle ?> из 5 звезд
 				</div>
 			</div>
 			<div class="rating-write">
-				<?= Html::a('Написать отзыв о товаре', 'http://sdfsdf'); ?>
+				<?= Html::a('Написать отзыв о товаре', '#ratings-form'); ?>
 			</div>
 		</div>
 	</div>
@@ -70,7 +71,7 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 			<div class="rating-count-value clearfix">
 				<div class="rating-count"><?= $sumGrouped[Ratings::AWESOME_RAIT] ?></div>
 				<div class="rating-percent">
-					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::AWESOME_RAIT] * 100) / count($rating)) ?>%"></div>
+					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::AWESOME_RAIT] * 100) / $ratingCount) ?>%"></div>
 				</div>
 				<div name="rating" class="rating-stars">
 					<div name="1" class="sprite bad active" title="ужасно">&nbsp;</div>
@@ -83,7 +84,7 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 			<div class="rating-count-value clearfix">
 				<div class="rating-count"><?= $sumGrouped[Ratings::NICE_RAIT] ?></div>
 				<div class="rating-percent">
-					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::NICE_RAIT] * 100) / count($rating)) ?>%"></div>
+					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::NICE_RAIT] * 100) / $ratingCount) ?>%"></div>
 				</div>
 				<div name="rating" class="rating-stars">
 					<div name="1" class="sprite bad active" title="ужасно">&nbsp;</div>
@@ -95,7 +96,7 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 			<div class="rating-count-value clearfix">
 				<div class="rating-count"><?= $sumGrouped[Ratings::NORMAL_RAIT] ?></div>
 				<div class="rating-percent">
-					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::NORMAL_RAIT] * 100) / count($rating)) ?>%"></div>
+					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::NORMAL_RAIT] * 100) / $ratingCount) ?>%"></div>
 				</div>
 				<div name="rating" class="rating-stars">
 					<div name="1" class="sprite bad active" title="ужасно">&nbsp;</div>
@@ -106,7 +107,7 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 			<div class="rating-count-value clearfix">
 				<div class="rating-count"><?= $sumGrouped[Ratings::NOT_NICE_RAIT] ?></div>
 				<div class="rating-percent">
-					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::NOT_NICE_RAIT] * 100) / count($rating)) ?>%"></div>
+					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::NOT_NICE_RAIT] * 100) / $ratingCount) ?>%"></div>
 				</div>
 				<div name="rating" class="rating-stars">
 					<div name="1" class="sprite bad active" title="ужасно">&nbsp;</div>
@@ -116,7 +117,7 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 			<div class="rating-count-value clearfix">
 				<div class="rating-count"><?= $sumGrouped[Ratings::BAD_RAIT] ?></div>
 				<div class="rating-percent">
-					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::BAD_RAIT] * 100) / count($rating)) ?>%"></div>
+					<div class="rating-percent-active" style="width: <?= (($sumGrouped[Ratings::BAD_RAIT] * 100) / $ratingCount) ?>%"></div>
 				</div>
 				<div name="rating" class="rating-stars">
 					<div name="1" class="sprite bad active" title="ужасно">&nbsp;</div>
@@ -168,7 +169,7 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 				</div>
 				-->
 			</div>
-			<div class="clearfix"></div>
+			<div class="clearfix" name="ratings-form"></div>
 		<?php } ?>
 	</div>
 	<div class="pagination-wrap">
@@ -183,9 +184,8 @@ if ($sumMidle >= Ratings::AWESOME_RAIT) {
 	</div>
 	<div class="rating-form-wrap">
 		<?= $this->render('@app/modules/ratings/views/ratings/_form', [
-			'model'      => $model,
-			'fieldName'  => $fieldName,
-			//'fieldValue' => $fieldValue,
+			'model'     => $model,
+			'fieldName' => $fieldName,
 		]) ?>
 	</div>
 

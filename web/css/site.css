@@ -172,6 +172,49 @@ body {
     width: 200px;
 }
 
+.rating-widget-stars {
+    float: left;
+    height: 16px;
+    margin-top: 8px;
+    text-align: center;
+    width: 200px;
+}
+
+.rating-widget-stars a {
+    color: #434343;
+    font-family: OpenSansRegular;
+    font-size: 14px;
+    height: 16px;
+    line-height: 16px;
+    text-decoration: underline;
+}
+
+.obj-star-raiting .rating-write {
+    background-position: 18px center;
+    display: block;
+    float: left;
+    margin: 0 0 0 60px;
+    padding: 10px 18px 10px 38px;
+    width: 220px;
+}
+
+.rating-widget-stars .rating-star-wrap {
+    width: 90px;
+    float: left;
+}
+
+.rating-widget-stars .recall {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAYAAADtc08vAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABaElEQVQoz43SsWtUURDF4W+za5qAragB9XXaSIhNIIJywUXURhF7RYi2NoKNlf+ChaCFdmKViEE4ChJIIQtamEbhRQRDUASFNIpikRd4LInuVHNn5ncuc+/paEUpZQzncAGz2NO01rGEJ5hP8meLGWvBx/AGc5jHTJKJJBOYaWpzeNvMgk4Dn8J9XE3yzD+ilHIa93A5yfNOKWUfBjibZGCEKKVMYwHT3aqqbuN1kkejwFDX9VpVVbtxsofz6LfUl7B3B3YtyWyTP8RiD5NYbQ31Mb6DwM9Wvor9PXzCAbyHJBvYGGGTSXzp4RUu4k5rjQEODQEfk0y1zpew2CmlHMYLHE/yYcRfOIhlnOjWdf21qqrvuFtV1XJd15//Ax/FU9xK8rLTavRt2nR8G6iLKVzBGVxPskDjxNbghk3/38Q1fMPvpvYOj/EgyY8tpjd02S6s2PT9kVZtPcmv7VYaFghuJFkZ5THhL+VQeMOI+NP0AAAAAElFTkSuQmCC');
+}
+
+.rating-widget-stars .rating-star-value {
+    background-position: 17px center;
+    background-repeat: no-repeat;
+    float: left;
+    padding-left: 40px;
+    width: 110px;
+}
+
 .rating-stars .sprite,
 .rating-star-wrap .sprite {
     float: left;
@@ -431,6 +474,11 @@ body {
 
 .scrollpane .ui-slider-handle {
     cursor: pointer;
+}
+
+a.anchor {
+    position: absolute;
+    margin-top: -40px;
 }
 
 #lang {
@@ -827,7 +875,7 @@ body {
 
 .obj-curr-price {
     margin: 6px;
-    height: 45px;
+    height: 40px;
 }
 
 .obj-curr-price-mid {
@@ -1347,15 +1395,16 @@ a.desc:after {
 .headershop .buttons a.call {
     background-color: #31a36f;
 }
+
 .info a {
-    color : #434343;
+    color: #434343;
     text-decoration: underline;
     font-family: OpenSans-Regular;
     font-size: 18px;
 }
 
 .shopleft {
-    float:left;
+    float: left;
     width: 310px;
     margin-top: 40px;
 }

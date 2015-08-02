@@ -21,7 +21,11 @@ class ObjectData extends PageData {
 
 		self::setCurrentDomain();
 
-		return 'http://' . self::$current . "/json_object/$id/currency/$currency/ip/" . self::getIpAddress();
+		return 'http://' . self::$dataDomain . "/json_object/$id/currency/$currency/ip/" . self::getIpAddress();
+	}
+
+	public static function getData($id) {
+		return parent::getJson(self::getDataUrl($id));
 	}
 
 }

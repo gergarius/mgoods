@@ -17,7 +17,12 @@ use app\modules\ratings\models\Ratings;
 		Отзыв о товаре
 	</h4>
 	<?php
-	$form = ActiveForm::begin();
+	$form = ActiveForm::begin([
+		'id'                     => 'ratings-form',
+		'enableAjaxValidation'   => false,
+		'enableClientValidation' => false,
+		'method'                 => 'post',
+	]);
 
 	echo $form->field($model, $fieldName)->hiddenInput()->label(false);
 	echo $form->field($model, 'rating')->hiddenInput()->label(false);
@@ -40,6 +45,7 @@ use app\modules\ratings\models\Ratings;
 		$awesome_active = 'active';
 	}
 	?>
+
 	<div class="form-group field-ratings-rating">
 		<div class="ratings-star-label">Оцените данный товар:</div>
 		<div class="ratings-star-select">
@@ -61,10 +67,15 @@ use app\modules\ratings\models\Ratings;
 
 	<?php //echo  $form->field($model, 'minuses')->textInput(['maxlength' => true]) ?>
 
-	<?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+	<?php /* $form->field($model, 'verifyCode')->widget(Captcha::className(), [
 		'captchaAction' => '/object/captcha',
 		'options' => ['class' => 'form-control'],
 		'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-9">{input}</div></div>',
+	])*/ ?>
+
+	<?= $form->field($model, 'captcha')->widget(Captcha::className(), [
+		'captchaAction' => 'site/captcha',
+		'template'      => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
 	]) ?>
 
 	<div class="form-group">
