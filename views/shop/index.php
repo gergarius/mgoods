@@ -1,10 +1,15 @@
 <?php
 /* @var $this yii\web\View */
+
 use app\widgets\SocialLikes;
 use yii\bootstrap\Tabs;
 
-print_r($data);
+
 ?>
+
+<?php echo $this->render("index_test", ['model'=>$model, 'data'=>$data, 'pages'=>$pages]); ?>
+
+
 <div class="object-index">
     <h1>Магазин <span style="font-family: OpenSansBold"><?= $data->shop->html_title; ?></span></h1>
     <div class="headershop">

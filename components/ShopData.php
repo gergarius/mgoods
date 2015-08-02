@@ -24,13 +24,23 @@ class ShopData extends PageData {
         self::setCurrentDomain();
 
         //$url = "http://dev.goods.marketgid.com/json_shop/pingvinpc.ru/30/?brand=canon";
-        $url = 'http://' . self::$dataDomain . "/json_shop/$shop_name/30/";
+        $url = 'http://' . self::$dataDomain . "/json_shop/$shop_name/0/";
         if(count($brand) > 0){
-            $query = http_build_query($brand);
+            $arr = [];
+            foreach($brand as $v){
+                $arr['brand[]'] = $v;
+            }
+            if(Yii::$app->request->cookies->getValue('limit')){
+                $arr['limit'] = Yii::$app->request->cookies->getValue('limit');
+            }
+
+            $arr['page'] = Yii::$app->request->get('page', 1);
+
+            $query = http_build_query($arr);
             $url .= "?".$query;
         }
 
-
+        echo $url;
 
         return $url;
     }
